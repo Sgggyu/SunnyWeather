@@ -1,5 +1,6 @@
 package com.example.sunnyweather.logic.network
 
+import com.example.sunnyweather.logic.model.PlaceResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,8 +13,8 @@ import kotlin.coroutines.suspendCoroutine
 
 object SunnyWeatherNetwork {
     private val placeService = ServiceCreator.create<PlaceService>()
-    suspend fun searchPlaces(query: String){
-        placeService.getData(query).await() //这里
+    suspend fun searchPlaces(query: String): PlaceResponse{
+        return placeService.getData(query).await() //这里使用了刚刚的扩展函数
     }
 
     /**
