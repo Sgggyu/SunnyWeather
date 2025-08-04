@@ -1,5 +1,6 @@
 package com.example.sunnyweather.logic.network
 
+import android.util.Log
 import com.example.sunnyweather.logic.model.PlaceResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +28,7 @@ object SunnyWeatherNetwork {
                     call: Call<T?>,
                     response: Response<T?>
                 ) {
+                    Log.v("SunnyWeatherNetwork",response.toString())
                     val body = response.body()
                     if (body!=null){
                         it.resume(body)
