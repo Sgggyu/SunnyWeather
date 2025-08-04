@@ -9,6 +9,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface PlaceService {
-    @GET("place?token=${SunnyWeatherApplication.TOKEN}&lang=zh_CN")
+    @GET("v2/place?token=${SunnyWeatherApplication.TOKEN}&lang=zh_CN")
     fun getData(@Query("query") query: String): Call<PlaceResponse>
 }
