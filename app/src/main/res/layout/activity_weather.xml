@@ -36,7 +36,7 @@
         android:layout_gravity = "start"
         android:clickable="true"
         android:focusable="true"
-        android:background="@color/design_default_color_primary">
+        android:background="#219FDD">
         <fragment
             android:id="@+id/frag_nav_place"
             android:name="com.example.sunnyweather.ui.place.PlaceFragment"

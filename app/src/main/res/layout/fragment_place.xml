@@ -16,7 +16,7 @@
         android:id="@+id/actionBarLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/purple_500">
+        android:background="#219FDD">
 
         <EditText
             android:id="@+id/et_search_place"
