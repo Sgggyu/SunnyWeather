@@ -1,9 +1,13 @@
 package com.example.sunnyweather
 
+import android.content.Context
 import android.graphics.Color
+import android.inputmethodservice.InputMethodService
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -18,6 +22,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sunnyweather.databinding.ActivityWeatherBinding
@@ -36,12 +42,12 @@ class WeatherActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //用enableEdgeToEdge来代替原来的已被弃用的状态栏透明写法
         enableEdgeToEdge()
         binding = ActivityWeatherBinding.inflate(layoutInflater)
-//        val decorView = window.decorView
-//        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//        window.statusBarColor = Color.TRANSPARENT
+
         setContentView(binding.root)
+
         if (viewModel.locationLng.isEmpty()){
             viewModel.locationLng = intent.getStringExtra("location_lng")?:""
         }
@@ -60,8 +66,37 @@ class WeatherActivity : AppCompatActivity() {
                 Toast.makeText(this,"无法获取天气信息，见擦汗是否连接网络", Toast.LENGTH_LONG).show()
                 it.exceptionOrNull()?.printStackTrace()
             }
+            binding.swipeWeather.isRefreshing = false
         })
+        binding.swipeWeather.setColorSchemeResources(R.color.purple_200)
         viewModel.refreshWeather(viewModel.locationLng,viewModel.locationLat)
+        binding.swipeWeather.setOnRefreshListener {
+            refreshWeather()
+        }
+        binding.layoutNow.btnNav.setOnClickListener {
+            binding.drawerWeather.openDrawer(GravityCompat.START)
+        }
+        binding.drawerWeather.addDrawerListener(object : DrawerLayout.DrawerListener{
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                val manager = getSystemService(Context.INPUT_METHOD_SERVICE)
+                        as InputMethodManager
+                manager.hideSoftInputFromWindow(drawerView.windowToken,
+                    InputMethodManager.HIDE_NOT_ALWAYS)
+            }
+
+            override fun onDrawerStateChanged(newState: Int) {
+
+            }
+
+        })
     }
 
     private fun showWeatherInfo(weather:Weather){
@@ -100,6 +135,11 @@ class WeatherActivity : AppCompatActivity() {
         binding.layoutLifeIndex.tvUltraviolet.text = lifeIndex.ultraviolet[0].desc
         binding.layoutLifeIndex.tvCarWashing.text = lifeIndex.carWashing[0].desc
         binding.layoutWeather.visibility = View.VISIBLE
+    }
+
+    fun refreshWeather(){
+        viewModel.refreshWeather(viewModel.locationLng,viewModel.locationLat)
+        binding.swipeWeather.isRefreshing = true
     }
 }
 
