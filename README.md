@@ -22,5 +22,5 @@
   添加常驻通知栏显示，支持快捷城市切换功能
 - 预览
 - ![加载失败](Image%20Preview/icon.png "悬停标题（可选）")
-- - ![加载失败](Image%20Preview/body1.png "悬停标题（可选）")
-- - ![加载失败](Image%20Preview/body2.png "悬停标题（可选）")
+- ![加载失败](Image%20Preview/body1.png "悬停标题（可选）")
+- ![加载失败](Image%20Preview/body2.png "悬停标题（可选）")
