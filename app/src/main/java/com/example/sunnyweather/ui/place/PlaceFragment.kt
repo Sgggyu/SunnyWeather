@@ -2,7 +2,6 @@ package com.example.sunnyweather.ui.place
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.sunnyweather.MainActivity
-import com.example.sunnyweather.R
 import com.example.sunnyweather.WeatherActivity
 import com.example.sunnyweather.databinding.FragmentPlaceBinding
 

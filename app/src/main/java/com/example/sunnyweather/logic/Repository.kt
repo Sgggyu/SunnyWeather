@@ -1,6 +1,5 @@
 package com.example.sunnyweather.logic
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.sunnyweather.logic.dao.PlaceDao
 import com.example.sunnyweather.logic.model.Place

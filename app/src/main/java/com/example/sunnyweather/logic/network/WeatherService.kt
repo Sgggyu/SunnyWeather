@@ -3,7 +3,6 @@ package com.example.sunnyweather.logic.network
 import com.example.sunnyweather.SunnyWeatherApplication
 import com.example.sunnyweather.logic.model.DailyResponse
 import com.example.sunnyweather.logic.model.RealtimeResponse
-import com.example.sunnyweather.logic.model.Weather
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

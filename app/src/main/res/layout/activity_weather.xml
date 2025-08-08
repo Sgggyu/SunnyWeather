@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_weather"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_weather"
@@ -26,6 +27,10 @@
                     android:id="@+id/layout_forcast"/>
                 <include layout = "@layout/life_index"
                     android:id="@+id/layout_life_index"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"/>
+
             </LinearLayout>
         </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -4,12 +4,9 @@ import android.util.Log
 import com.example.sunnyweather.logic.model.DailyResponse
 import com.example.sunnyweather.logic.model.PlaceResponse
 import com.example.sunnyweather.logic.model.RealtimeResponse
-import com.example.sunnyweather.logic.model.Weather
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
-import retrofit2.await
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine

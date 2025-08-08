@@ -1,7 +1,6 @@
 package com.example.sunnyweather.logic.dao
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.example.sunnyweather.SunnyWeatherApplication
 import com.example.sunnyweather.logic.model.Place
