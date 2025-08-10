@@ -33,8 +33,6 @@ class PlaceFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
-
         if(activity is MainActivity && viewModel.isPlacedSaved()){
 
             val  place = viewModel.getSavedPlace()

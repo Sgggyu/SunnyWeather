@@ -1,7 +1,10 @@
 package com.example.sunnyweather.logic
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.example.sunnyweather.logic.dao.PlaceDao
+import com.example.sunnyweather.logic.model.Location
 import com.example.sunnyweather.logic.model.Place
 import com.example.sunnyweather.logic.model.Weather
 import com.example.sunnyweather.logic.network.SunnyWeatherNetwork
@@ -10,6 +13,12 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 
 object Repository{
+    //用于前台服务的全局性质的数据源
+    private val _globalWeatherData = MutableLiveData<Result<Weather>>()
+    val globalWeatherData: LiveData<Result<Weather>> get() = _globalWeatherData
+    fun refreshGlobalWeather(location: Location){
+        refreshWeather(location.lng,location.lat)
+    }
     fun searchPlaces(query: String) = liveData(Dispatchers.IO) {
         val result = try{
             val placeResponse = SunnyWeatherNetwork.searchPlaces(query)
@@ -34,6 +43,7 @@ object Repository{
                 val dailyResponse = deferredDaily.await()
                 if (realtimeResponse.status == "ok" && dailyResponse.status == "ok"){
                     val weather = Weather(realtimeResponse.result.realtime ,dailyResponse.result.daily)
+                    _globalWeatherData.postValue(Result.success(weather))
                     Result.success(weather)
                 }else{
                     Result.failure(

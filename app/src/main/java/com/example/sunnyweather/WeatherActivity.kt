@@ -1,6 +1,7 @@
 package com.example.sunnyweather
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,7 @@ class WeatherActivity : AppCompatActivity() {
         if (viewModel.placeName.isEmpty()){
             viewModel.placeName = intent.getStringExtra("place_name")?:""
         }
+
         viewModel.weatherLiveData.observe(this, Observer{
             val weather = it.getOrNull()
             if (weather != null){
@@ -54,6 +56,7 @@ class WeatherActivity : AppCompatActivity() {
             }
             binding.swipeWeather.isRefreshing = false
         })
+
         binding.swipeWeather.setColorSchemeResources(R.color.purple_200)
         viewModel.refreshWeather(viewModel.locationLng,viewModel.locationLat)
         binding.swipeWeather.setOnRefreshListener {
@@ -83,6 +86,12 @@ class WeatherActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        intent = Intent(this, NotificationService::class.java)
+        startForegroundService(intent)
     }
 
     private fun showWeatherInfo(weather:Weather){
