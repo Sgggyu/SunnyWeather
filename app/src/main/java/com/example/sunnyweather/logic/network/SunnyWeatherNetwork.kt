@@ -26,6 +26,7 @@ object SunnyWeatherNetwork {
     }
     /**
      * 注意 这是一个扩展函数，扩展Call类，函数名为await()
+     * 统一使用了await作为接口回调函数
      */
     private suspend fun <T> Call<T>.await():T{
         return suspendCoroutine {

@@ -40,7 +40,7 @@ class NotificationService : Service() {
     private val refreshRunnable = object : Runnable {
         override fun run() {
             Repository.refreshGlobalWeather(PlaceDao.getSavedPlace().location)
-            refreshHandler.postDelayed(this, 5000) // 30分钟
+            refreshHandler.postDelayed(this, 30*60*1000) // 30分钟
         }
     }
 
