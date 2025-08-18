@@ -51,9 +51,6 @@ object SunnyWeatherNetwork {
                 }
 
             })
-
-
-
         }
     }
 }
